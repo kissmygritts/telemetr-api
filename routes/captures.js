@@ -1,7 +1,7 @@
 const Express = require('express');
 const _ = require('lodash');
 const router = Express.Router();
-const db = require('../db');
+const db = require('../db').db;
 
 // GET lall captures
 router.get('/', (req, res) => {

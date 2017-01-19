@@ -1,6 +1,6 @@
 const Express = require('express');
 const router = Express.Router();
-const db = require('../db');
+const db = require('../db').db;
 
 // GET all devices
 router.get('/', (req, res) => {

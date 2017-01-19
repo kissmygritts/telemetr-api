@@ -1,6 +1,6 @@
 const Express = require('express');
 const router = Express.Router();
-const db = require('../db');
+const db = require('../db').db;
 
 router.get('/', (req, res) => {
   db.any(`
