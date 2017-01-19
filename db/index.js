@@ -2,7 +2,8 @@
 
 const promise = require('bluebird');
 const repos = {
-  animals: require('./repos/animals')
+  animals: require('./repos/animals'),
+  captures: require('./repos/captures')
 };
 
 // set pg-promise options
