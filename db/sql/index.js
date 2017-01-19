@@ -17,9 +17,14 @@ function sql(file) {
 
 module.exports = {
   animals: {
-    getAll: sql('animals/getAll.sql')
+    getAll: sql('animals/getAll.sql'),
+    findById: sql('animals/findById.sql')
   },
   captures: {
     getAll: sql('captures/getAll.sql')
+  },
+  deployments: {
+    all: sql('deployments/all.sql'),
+    permId: sql('deployments/permId.sql')
   }
 };
