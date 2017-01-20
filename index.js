@@ -12,17 +12,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // // set up routes
+// TODO: move all route reqs into (./routes/index.js)
 const deployments = require('./routes/deployments');
 const animals = require('./routes/animals');
 const devices = require('./routes/devices');
 const captures = require('./routes/captures');
 const relocations = require('./routes/relocations');
+const validity = require('./routes/validity');
 
 app.use('/deployments', deployments);
 app.use('/animals', animals);
 app.use('/devices', devices);
 app.use('/captures', captures);
 app.use('/relocations', relocations);
+app.use('/validity', validity);
 
 app.get('/qs', (req, res) => {
   let qg = req.query;

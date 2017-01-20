@@ -38,6 +38,7 @@ module.exports = {
   },
   relocations: {
     all: sql('relocations/all.sql'),
-    show: sql('relocations/show.sql')
+    show: sql('relocations/show.sql'),
+    validity: sql('relocations/validity.sql')
   }
 };
