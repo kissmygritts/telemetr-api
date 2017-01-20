@@ -1,7 +1,7 @@
 {
-  "name": "telemetr-sqlz-api",
-  "version": "1.0.0",
-  "description": "simple api to connect to spatial database",
+  "name": "telemetr-api",
+  "version": "0.1.0",
+  "description": "simple api to connect to telemetr spatial database",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,6 +9,13 @@
   },
   "author": "Me",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kissmygritts/telemetr-api"
+  },
+  "bugs": {
+    "url": "https://github.com/kissmygritts/telemetr-api/issues"
+  }
   "dependencies": {
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
@@ -16,7 +23,6 @@
     "express": "^4.14.0",
     "pg": "^6.1.2",
     "pg-monitor": "^0.6.1",
-    "pg-promise": "^5.5.0",
-    "sequelize": "^3.28.0"
+    "pg-promise": "^5.5.0"
   }
 }
