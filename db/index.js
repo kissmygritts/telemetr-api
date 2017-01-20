@@ -13,16 +13,12 @@ const repos = {
 const options = {
   promiseLib: promise,
 
-  // trying to be fancy, lets get it working first
+  // trying to be fancy, gets adds all repos from above (repos)
   extend: obj => {
     for (let r in repos) {
       obj[r] = repos[r](obj, pgp);
     }
   }
-
-  // extend: obj => {
-  //   obj.animals = repos.animals(obj, pgp);
-  // }
 }
 
 // database config
@@ -30,7 +26,7 @@ const options = {
 const config = {
   host: 'localhost',
   port: 5432,
-  database: 'telemetr'
+  database: 'telemetr_pres'
 }
 
 // require and init pg-promise with options

@@ -29,13 +29,15 @@ module.exports = {
     show: sql('animals/show.sql')
   },
   captures: {
-    all: sql('captures/all.sql')
+    all: sql('captures/all.sql'),
+    show: sql('captures/show.sql')
   },
   deployments: {
     all: sql('deployments/all.sql'),
     show: sql('deployments/show.sql')
   },
   relocations: {
-    all: sql('relocations/all.sql')
+    all: sql('relocations/all.sql'),
+    show: sql('relocations/show.sql')
   }
 };

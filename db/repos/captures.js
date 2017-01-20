@@ -3,6 +3,7 @@ const sql = require('../sql').captures;
 
 module.exports = (rep, pgp) => {
   return {
-    all: () => rep.many(sql.all)
+    all: () => rep.many(sql.all),
+    show: permId => rep.many(sql.show, permId)
   };
 };

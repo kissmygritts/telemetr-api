@@ -4,48 +4,22 @@ const router = Express.Router();
 const db = require('../db');
 
 router.get('/', (req, res) => {
-  db.captures.getAll()
+  db.captures.all()
   .then(data => res.status(200).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }));
 });
 
+router.get('/:perm_id', (req, res) => {
+  // QUESTION: should I check perm_id exists in the database, what error does it return if not?
+  db.captures.show(req.params)
+  .then(data => res.status(200).json({ success: true, data: data }))
+  .catch(err => res.status(400).json({ success: false, error: err }));
+});
 
 /* 2017-01-19
   below is old code use to test transactions with pg-promise
 */
-// // GET lall captures
-// router.get('/', (req, res) => {
-//   db.any('SELECT * FROM captures')
-//     .then(data => res.status(200).json({ success: true, data: data }))
-//     .catch(err => res.status(400).json({ success: false, data: err }));
-// });
-//
-// // GET captures by perm_id
-// router.get('/:perm_id', (req, res) => {
-//   db.any('SELECT * FROM captures WHERE perm_id = $(perm_id)', req.params)
-//   .then(data => res.status(200).json({ success: true, data: data }))
-//   .catch(err => res.status(400).json({ success: false, data: err }));
-// });
-//
-// // router.get('/:perm_id', (req, res) => {
-// //   db.any('SELECT * FROM captures WHERE perm_id = $1', req.params.perm_id)
-// //     .then(data => res.status(200).json({ success: true, data: data}))
-// //     .catch(err => res.status(400).json({ success: false, data: err }));
-// // });
-//
-// router.get('/test', (req, res) => {
-//   db.task(t => {
-//     return t.batch([
-//       t.any('SELECT * FROM captures WHERE perm_id = \'F09\''),
-//       t.any('SELECT * FROM animals WHERE perm_id = \'MD10\'')
-//     ]);
-//   })
-//     .then(data => {
-//       console.log(data)
-//       res.status(200).json({ data0: data[0], ld0: data[0].length, data1: data[1], ld1:data[1].length })
-//     })
-//     .catch(err => res.status(400).json(err));
-// })
+
 //
 // router.post('/', (req, res) => {
 //   let rb = req.body;
@@ -74,7 +48,7 @@ router.get('/', (req, res) => {
 //         })
 //       }
 //       if (success) {
-//         httpCode = 201;
+//         httpCode = 201; // TODO: res.status(xxx) without ending the res will set the code
 //         return t.one(
 //           'INSERT INTO captures ' +
 //             '(perm_id, cap_date, sex, age, species, notes, serial_num) ' +
