@@ -15,7 +15,7 @@
   },
   "bugs": {
     "url": "https://github.com/kissmygritts/telemetr-api/issues"
-  }
+  },
   "dependencies": {
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
