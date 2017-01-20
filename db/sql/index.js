@@ -25,15 +25,15 @@ module.exports = {
     post: sql('devices/post.sql')
   },
   animals: {
-    getAll: sql('animals/getAll.sql'),
-    findById: sql('animals/findById.sql')
+    getAll: sql('animals/all.sql'),
+    show: sql('animals/show.sql')
   },
   captures: {
-    getAll: sql('captures/getAll.sql')
+    all: sql('captures/all.sql')
   },
   deployments: {
     all: sql('deployments/all.sql'),
-    permId: sql('deployments/permId.sql')
+    show: sql('deployments/show.sql')
   },
   relocations: {
     all: sql('relocations/all.sql')
