@@ -16,6 +16,11 @@ function sql(file) {
 }
 
 module.exports = {
+  devices: {
+    all: sql('devices/all.sql'),
+    show: sql('devices/show.sql'),
+    post: sql('devices/post.sql')
+  },
   animals: {
     getAll: sql('animals/getAll.sql'),
     findById: sql('animals/findById.sql')
@@ -26,5 +31,8 @@ module.exports = {
   deployments: {
     all: sql('deployments/all.sql'),
     permId: sql('deployments/permId.sql')
+  },
+  relocations: {
+    all: sql('relocations/all.sql')
   }
 };
