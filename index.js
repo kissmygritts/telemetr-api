@@ -19,6 +19,7 @@ const devices = require('./routes/devices');
 const captures = require('./routes/captures');
 const relocations = require('./routes/relocations');
 const validity = require('./routes/validity');
+const trajectories = require('./routes/trajectories');
 
 app.use('/deployments', deployments);
 app.use('/animals', animals);
@@ -26,6 +27,7 @@ app.use('/devices', devices);
 app.use('/captures', captures);
 app.use('/relocations', relocations);
 app.use('/validity', validity);
+app.use('/trajectories', trajectories);
 
 app.get('/qs', (req, res) => {
   let qg = req.query;
