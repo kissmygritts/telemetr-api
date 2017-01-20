@@ -1,6 +1,6 @@
 {
   "name": "telemetr-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "simple api to connect to telemetr spatial database",
   "main": "index.js",
   "scripts": {
