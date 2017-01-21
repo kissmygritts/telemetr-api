@@ -4,7 +4,7 @@
   "description": "simple api to connect to telemetr spatial database",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --timeout 10000",
     "dev": "nodemon index.js"
   },
   "author": "Me",
@@ -25,5 +25,10 @@
     "pg": "^6.1.2",
     "pg-monitor": "^0.6.1",
     "pg-promise": "^5.5.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
   }
 }

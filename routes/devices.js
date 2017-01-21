@@ -16,7 +16,7 @@ router.get('/:serial_num', (req, res) => {
 
 router.post('/', (req, res) => {
   db.devices.post(req.body)
-  .then(data => res.status(200).json({ success: true, data: data }))
+  .then(data => res.status(201).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err}));
 })
 
