@@ -4,6 +4,7 @@ const sql = require('../sql').captures;
 module.exports = (rep, pgp) => {
   return {
     all: () => rep.many(sql.all),
-    show: permId => rep.many(sql.show, permId)
+    show: permId => rep.many(sql.show, permId),
+    post: body => rep.one(sql.post, body)
   };
 };

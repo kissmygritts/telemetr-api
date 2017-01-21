@@ -4,7 +4,7 @@
   "description": "simple api to connect to telemetr spatial database",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 10000",
+    "test": "NODE_ENV=test mocha --timeout 10000",
     "dev": "NODE_ENV=development nodemon index.js"
   },
   "author": "Me",

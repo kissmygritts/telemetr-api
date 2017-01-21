@@ -16,6 +16,14 @@ router.get('/:perm_id', (req, res) => {
   .catch(err => res.status(400).json({ success: false, error: err }));
 });
 
+router.post('/', (req, res) => {
+  // TODO:  this route will need to do the data checks described below in commented out code
+  // right now this route is being used to set up the testing.
+  db.captures.post(req.body)
+  .then(data => res.status(200).json({ success: true, data: data }))
+  .catch(err => res.status(400).json({ success: false, error: err }));
+});
+
 /* 2017-01-19
   below is old code use to test transactions with pg-promise
 */
