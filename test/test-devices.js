@@ -10,7 +10,7 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 const device = {
-  serial_num: "testdevice3",
+  serial_num: "testdevice1",
   frequency: 123.123,
   vendor: "ATS - telonics",
   device_type: "GPS",
@@ -19,6 +19,22 @@ const device = {
 }
 
 describe('DEVICES', () => {
+  // test POST route
+  describe('POST /devices', () => {
+    it('it should POST a new device', (done) => {
+      chai.request(server)
+        .post('/devices')
+        .send(device)
+        .end((err, res) => {
+          res.should.have.status(201);
+          res.body.should.be.a('object');
+          res.body.should.have.property('success').eql(true);
+          res.body.should.have.property('data');
+          done();
+        });
+    });
+  });
+
   // test the /devices GET route
   describe('GET /devices', () => {
     it('it should GET all the devices', (done) => {
@@ -38,25 +54,9 @@ describe('DEVICES', () => {
   describe('GET /devices/:id', () => {
     it('it should GET a device by id', (done) => {
       chai.request(server)
-        .get('/devices/GSM01508')
+        .get('/devices/' + device.serial_num)
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.be.a('object');
-          res.body.should.have.property('success').eql(true);
-          res.body.should.have.property('data');
-          done();
-        });
-    });
-  });
-
-  // test POST route
-  describe('POST /devices', () => {
-    it('it should POST a new device', (done) => {
-      chai.request(server)
-        .post('/devices')
-        .send(device)
-        .end((err, res) => {
-          res.should.have.status(201);
           res.body.should.be.a('object');
           res.body.should.have.property('success').eql(true);
           res.body.should.have.property('data');
