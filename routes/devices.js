@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
 
 router.delete('/:serial_num', (req, res) => {
   db.devices.delete(req.params)
-  .then(data => res.status(200).json({ success: true }))
+  .then(() => res.status(200).json({ success: true }))
   .catch(err => res.status(400).json({ success: false, error: err }));
 });
 

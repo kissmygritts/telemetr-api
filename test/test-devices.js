@@ -66,15 +66,16 @@ describe('DEVICES', () => {
   });
 
   // DELETE ROUTE
-  // describe('DELETE /devices', () => {
-  //   it('it should DELETE the proper device', (done) => {
-  //     chai.request(server)
-  //       .delete('/devices/' + device.serial_num)
-  //       .end((err, res) => {
-  //         res.should.have.status(200);
-  //         res.body.should.be.a('object');
-  //         res.should.have.property('success').eql(true);
-  //       });
-  //   });
-  // });
+  describe('DELETE /devices', () => {
+    it('it should DELETE the proper device', (done) => {
+      chai.request(server)
+        .delete('/devices/' + device.serial_num)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('success').eql(true);
+          done();
+        });
+    });
+  });
 });

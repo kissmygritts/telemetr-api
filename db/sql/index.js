@@ -33,7 +33,8 @@ module.exports = {
   captures: {
     all: sql('captures/all.sql'),
     show: sql('captures/show.sql'),
-    post: sql('captures/post.sql')
+    post: sql('captures/post.sql'),
+    delete: sql('captures/delete.sql')
   },
   deployments: {
     all: sql('deployments/all.sql'),

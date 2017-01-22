@@ -5,6 +5,7 @@ module.exports = (rep, pgp) => {
   return {
     all: () => rep.many(sql.all),
     show: permId => rep.many(sql.show, permId),
-    post: body => rep.one(sql.post, body)
+    post: body => rep.one(sql.post, body),
+    delete: permId => rep.none(sql.delete, permId)
   };
 };

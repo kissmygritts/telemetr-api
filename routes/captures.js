@@ -20,7 +20,14 @@ router.post('/', (req, res) => {
   // TODO:  this route will need to do the data checks described below in commented out code
   // right now this route is being used to set up the testing.
   db.captures.post(req.body)
-  .then(data => res.status(200).json({ success: true, data: data }))
+  .then(data => res.status(201).json({ success: true, data: data }))
+  .catch(err => res.status(400).json({ success: false, error: err }));
+});
+
+router.delete('/:perm_id', (req, res) => {
+  // TODO: should also delete the record from Animals and Deployments
+  db.captures.delete(req.params)
+  .then(() => res.status(200).json({ success: true }))
   .catch(err => res.status(400).json({ success: false, error: err }));
 });
 
