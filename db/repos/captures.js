@@ -1,4 +1,4 @@
-`use strict`;
+'use strict';
 const sql = require('../sql').captures;
 
 module.exports = (rep, pgp) => {

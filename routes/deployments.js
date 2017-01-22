@@ -1,18 +1,18 @@
-const Express = require('express');
-const router = Express.Router();
-const db = require('../db');
+const Express = require('express')
+const router = Express.Router()
+const db = require('../db')
 
 router.get('/', (req, res) => {
   db.deployments.all()
   .then(data => res.status(200).json({ success: true, data: data }))
-  .catch(err => res.status(400).json({ success: false, error: err }));
-});
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
 
 router.get('/:perm_id', (req, res) => {
-  db.deployments.permId(req.params)
+  db.deployments.show(req.params)
   .then(data => res.status(200).json({ success: true, data: data }))
-  .catch(err => res.status(400).json({ success: false, error: err }));
-});
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
 
 /* 2017-01-20
   pre query file routes
@@ -53,4 +53,4 @@ router.get('/:perm_id', (req, res) => {
 //   .catch(err => res.status(400).json({ success: false, data: err }));
 // });
 
-module.exports = router;
+module.exports = router

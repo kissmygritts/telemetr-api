@@ -1,35 +1,35 @@
-const Express = require('express');
-const _ = require('lodash');
-const router = Express.Router();
-const db = require('../db');
+const Express = require('express')
+// const _ = require('lodash')
+const router = Express.Router()
+const db = require('../db')
 
 router.get('/', (req, res) => {
   db.captures.all()
   .then(data => res.status(200).json({ success: true, data: data }))
-  .catch(err => res.status(400).json({ success: false, error: err }));
-});
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
 
 router.get('/:perm_id', (req, res) => {
   // QUESTION: should I check perm_id exists in the database, what error does it return if not?
   db.captures.show(req.params)
   .then(data => res.status(200).json({ success: true, data: data }))
-  .catch(err => res.status(400).json({ success: false, error: err }));
-});
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
 
 router.post('/', (req, res) => {
   // TODO:  this route will need to do the data checks described below in commented out code
   // right now this route is being used to set up the testing.
   db.captures.post(req.body)
   .then(data => res.status(201).json({ success: true, data: data }))
-  .catch(err => res.status(400).json({ success: false, error: err }));
-});
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
 
 router.delete('/:perm_id', (req, res) => {
   // TODO: should also delete the record from Animals and Deployments
   db.captures.delete(req.params)
   .then(() => res.status(200).json({ success: true }))
-  .catch(err => res.status(400).json({ success: false, error: err }));
-});
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
 
 /* 2017-01-19
   below is old code use to test transactions with pg-promise
@@ -80,4 +80,4 @@ router.delete('/:perm_id', (req, res) => {
 //   .catch(err => res.status(400).json({ success: success, data: err }));
 // });
 
-module.exports = router;
+module.exports = router

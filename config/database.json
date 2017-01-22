@@ -2,7 +2,7 @@
   "development": {
     "username": null,
     "password": null,
-    "database": "telemetr_test",
+    "database": "telemetr_pres",
     "host": "127.0.0.1",
     "port": 5432
   },

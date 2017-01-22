@@ -10,7 +10,7 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 const capture = {
-  perm_id: 'testDeviceCapture',
+  perm_id: 'testCapture',
   cap_date: '2016-01-01',
   sex: 'male',
   age: 'adult',
@@ -33,6 +33,8 @@ describe('CAPTURES', () => {
 
   after(() => {
     db.devices.delete({ serial_num: "testDeviceCapture" });
+    // TODO: delete animal
+    // TODO: delete deployment
   });
 
   describe('POST /captures', () => {
