@@ -21,7 +21,7 @@ const capture = {
 
 describe('CAPTURES', () => {
   describe('POST /captures', () => {
-    it('it should POST a new device', (done) => {
+    it('it should POST a new capture', (done) => {
       chai.request(server)
         .post('/devices')
         .send(capture)
@@ -30,9 +30,17 @@ describe('CAPTURES', () => {
           res.body.should.be.a('object');
           res.body.should.have.property('success').eql(true);
           res.body.should.have.property('data');
-          don();
+          done();
         });
     });
+
+    /* it should also enter a new animal */
+    it('it should also insert a new animal'), (done) => {
+      chai.request(server)
+        .get('/animals' + capture.perm_id)
+    }
+
+    /* it should also enter a new deployment */
   });
 
   describe('GET /captures', () => {

@@ -13,7 +13,7 @@ VALUES (
   ${sex},
   ${age},
   ${species},
-  ${notes}
+  ${notes},
   ${serial_num}
 )
-RETURNIGN *;
+RETURNING *;

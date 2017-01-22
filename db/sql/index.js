@@ -27,7 +27,7 @@ module.exports = {
     // TODO: /devices/:perm_id/deployments route?? get all the deployments for a device?
   },
   animals: {
-    getAll: sql('animals/all.sql'),
+    all: sql('animals/all.sql'),
     show: sql('animals/show.sql')
   },
   captures: {
