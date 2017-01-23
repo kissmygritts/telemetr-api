@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const promise = require('bluebird');
-const env = process.env.NODE_ENV;
+const promise = require('bluebird')
+const env = process.env.NODE_ENV
 const config = require('../config/database.json')[env]
 const repos = {
   animals: require('./repos/animals'),
@@ -10,7 +10,7 @@ const repos = {
   relocations: require('./repos/relocations'),
   devices: require('./repos/devices'),
   trajectories: require('./repos/trajectories')
-};
+}
 
 // set pg-promise options
 const options = {
@@ -19,7 +19,7 @@ const options = {
   // trying to be fancy, gets adds all repos from above (repos)
   extend: obj => {
     for (let r in repos) {
-      obj[r] = repos[r](obj, pgp);
+      obj[r] = repos[r](obj, pgp)
     }
   }
 }
@@ -33,14 +33,14 @@ const options = {
 // }
 
 // require and init pg-promise with options
-const pgp = require('pg-promise')(options);
+const pgp = require('pg-promise')(options)
 
 // create database instance
-const db = pgp(config);
+const db = pgp(config)
 
 // require and use pg-monitor
 // TODO: init diagnostic options
 // const diag = require('./diagnostics');
 // diag.init(options);
 
-module.exports = db;
+module.exports = db

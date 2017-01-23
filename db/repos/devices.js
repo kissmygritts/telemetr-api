@@ -1,6 +1,5 @@
-'use strict';
-
-const sql = require('../sql').devices;
+'use strict'
+const sql = require('../sql').devices
 
 module.exports = (rep, pgp) => {
   return {
@@ -8,5 +7,5 @@ module.exports = (rep, pgp) => {
     show: serial => rep.one(sql.show, serial),
     post: body => rep.one(sql.post, body),
     delete: serial => rep.none(sql.delete, serial)
-  };
-};
+  }
+}

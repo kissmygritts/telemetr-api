@@ -1,20 +1,19 @@
-const Express = require('express');
-const router = Express.Router();
-const dbgeo = require('dbgeo');
-// const pgp = require('../db').pgp;
-const db = require('../db');
+const Express = require('express')
+const router = Express.Router()
+// const dbgeo = require('dbgeo')
+const db = require('../db')
 
 router.get('/', (req, res) => {
   db.relocations.all()
   .then(data => res.status(200).json({ success: true, data: data }))
-  .catch(err => res.status(400).json({ success: false, err: err }));
-});
+  .catch(err => res.status(400).json({ success: false, err: err }))
+})
 
 router.get('/:perm_id', (req, res) => {
   db.relocations.show(req.params)
   .then(data => res.status(200).json({ success: true, data: data }))
-  .catch(err => res.status(400).json({ success: false, err: err }));
-});
+  .catch(err => res.status(400).json({ success: false, err: err }))
+})
 
 // 2017-01-19 - old queries below, will convert to newer methods
 // // GET request: show all gps locations for one animal
@@ -153,4 +152,4 @@ router.get('/:perm_id', (req, res) => {
 //   .catch(err => res.status(400).json({ success: false, data: err }));
 // });
 
-module.exports = router;
+module.exports = router

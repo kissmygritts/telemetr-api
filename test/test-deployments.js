@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 const db = require('../db')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
@@ -27,8 +28,8 @@ const capture = {
 describe('DEPLOYMENTS', () => {
   before(() => {
     db.devices.post(device)
-    .then(db.captures.post(capture));
-  });
+    .then(db.captures.post(capture))
+  })
 
   // after(() => {
   //   db.devices.delete({ serial_num: 'collar2' })
@@ -42,26 +43,26 @@ describe('DEPLOYMENTS', () => {
       chai.request(server)
         .get('/deployments')
         .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          res.body.should.have.property('success').eql(true);
-          res.body.should.have.property('data');
-          done();
-        });
-    });
-  });
+          res.should.have.status(200)
+          res.body.should.be.a('object')
+          res.body.should.have.property('success').eql(true)
+          res.body.should.have.property('data')
+          done()
+        })
+    })
+  })
 
   describe('GET /deployments/perm_id', () => {
     it('it should GET one deployment by perm_id', (done) => {
       chai.request(server)
         .get('/deployments/' + capture.perm_id)
         .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          res.body.should.have.property('success').eql(true);
-          res.body.should.have.property('data');
-          done();
-        });
-    });
-  });
-});
+          res.should.have.status(200)
+          res.body.should.be.a('object')
+          res.body.should.have.property('success').eql(true)
+          res.body.should.have.property('data')
+          done()
+        })
+    })
+  })
+})

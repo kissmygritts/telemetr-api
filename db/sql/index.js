@@ -1,21 +1,20 @@
-'use strict';
+'use strict'
+const QueryFile = require('pg-promise').QueryFile
+const path = require('path')
 
-const QueryFile = require('pg-promise').QueryFile;
-const path = require('path');
-
-function sql(file) {
-  const fullPath = path.join(__dirname, file);
+function sql (file) {
+  const fullPath = path.join(__dirname, file)
   const options = {
     minify: true,
     debug: true
-  };
-  const qf = new QueryFile(fullPath, options);
+  }
+  const qf = new QueryFile(fullPath, options)
 
   if (qf.error) {
-    console.log(qf.error);
+    console.log(qf.error)
   }
 
-  return qf;
+  return qf
 }
 
 module.exports = {
@@ -48,4 +47,4 @@ module.exports = {
   trajectories: {
     all: sql('trajectories/all.sql')
   }
-};
+}
