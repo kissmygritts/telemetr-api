@@ -1,6 +1,6 @@
 {
   "name": "telemetr-api",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "simple api to connect to telemetr spatial database",
   "main": "index.js",
   "scripts": {
@@ -33,6 +33,12 @@
     "standard": "^8.6.0"
   },
   "standard": {
-    "globals": [ "should", "describe", "it", "before", "after" ]
+    "globals": [
+      "should",
+      "describe",
+      "it",
+      "before",
+      "after"
+    ]
   }
 }
