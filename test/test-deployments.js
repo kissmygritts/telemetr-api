@@ -6,37 +6,9 @@ const server = require('../index')
 const should = chai.should()
 chai.use(chaiHttp)
 
-const device = {
-  serial_num: 'collar2',
-  frequency: 123.123,
-  vendor: 'ATS - telonics',
-  device_type: 'GPS',
-  mfg_date: '2012-01-01',
-  model: 'IRIDIUM'
-}
-
-const capture = {
-  perm_id: 'testDeployments',
-  cap_date: '2016-01-01',
-  sex: 'male',
-  age: 'adult',
-  species: 'DBHS',
-  notes: 'test animal entry',
-  serial_num: 'collar2'
-}
-
 describe('DEPLOYMENTS', () => {
-  before(() => {
-    db.devices.post(device)
-    .then(db.captures.post(capture))
-  })
-
-  after(() => {
-    db.captures.delete({ perm_id: 'testDeployments' })
-    .then(db.devices.delete({ serial_num: 'collar2' }))
-    // TODO: delete animals
-    // TODO: delete deployment
-  })
+  beforeEach(() => db.migrations.up())
+  afterEach(() => db.migrations.down())
 
   describe('GET /deployments', () => {
     it('it should GET all deployments', (done) => {
@@ -55,7 +27,7 @@ describe('DEPLOYMENTS', () => {
   describe('GET /deployments/perm_id', () => {
     it('it should GET one deployment by perm_id', (done) => {
       chai.request(server)
-        .get('/deployments/' + capture.perm_id)
+        .get('/deployments/testCapture')
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.be.a('object')
