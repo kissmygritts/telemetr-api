@@ -1,6 +1,7 @@
 'use strict'
 
 const promise = require('bluebird')
+const monitor = require('pg-monitor')
 const env = process.env.NODE_ENV
 const config = require('../config/database.json')[env]
 const repos = {
@@ -25,13 +26,10 @@ const options = {
   }
 }
 
-// database config
-// TODO: this either needs to be pulled out into a separate file, or supplied in NODE_ENV
-// const config = {
-//   host: 'localhost',
-//   port: 5432,
-//   database: 'telemetr_pres'
-// }
+// attach monitor to pgp instance
+if (env === 'development') {
+    monitor.attach(options)
+}
 
 // require and init pg-promise with options
 const pgp = require('pg-promise')(options)
@@ -41,7 +39,7 @@ const db = pgp(config)
 
 // require and use pg-monitor
 // TODO: init diagnostic options
-// const diag = require('./diagnostics');
-// diag.init(options);
+// const diag = require('./diagnostics')
+// diag.init(options)
 
 module.exports = db

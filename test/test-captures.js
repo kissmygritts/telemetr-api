@@ -44,6 +44,7 @@ describe('CAPTURES', () => {
           res.body.should.be.a('object')
           res.body.should.have.a.property('success').eql(true)
           res.body.should.have.property('data')
+          res.body.data.should.be.a('array')
           done()
         })
     })
@@ -59,6 +60,14 @@ describe('CAPTURES', () => {
           res.body.should.be.a('object')
           res.body.should.have.property('success').eql(true)
           res.body.should.have.property('data')
+          res.body.data[0].should.have.property('perm_id')
+          res.body.data[0].should.have.property('species')
+          res.body.data[0].should.have.property('age')
+          res.body.data[0].should.have.property('sex')
+          res.body.data[0].should.have.property('serial_num')
+          res.body.data[0].should.have.property('animal_id')
+          res.body.data[0].should.have.property('device_id')
+          res.body.data[0].should.have.property('deployment_id')
           done()
         })
     })
@@ -68,7 +77,7 @@ describe('CAPTURES', () => {
   describe('DELETE /captures/:perm_id', () => {
     it('it should DELETE capture by perm_id', (done) => {
       chai.request(server)
-        .delete('/captures/testCapture')
+        .delete('/captures/collar2')
         .end((err, res) => {
           res.should.have.status(200)
           res.should.be.a('object')

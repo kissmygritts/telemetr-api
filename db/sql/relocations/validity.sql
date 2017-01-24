@@ -12,6 +12,5 @@ GROUP BY
 ORDER BY
   animals.perm_id,
   validity_codes.code;
-
-
+  
 -- I can probably leave of the where clause and dynamically add it when I want to filter by id

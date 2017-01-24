@@ -55,7 +55,7 @@ describe('DEVICES', () => {
   describe('GET /devices/:serial_num', () => {
     it('it should GET a device by serial_num', (done) => {
       chai.request(server)
-        .get('/devices/collar1')
+        .get('/devices/collar2')
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.be.a('object')
