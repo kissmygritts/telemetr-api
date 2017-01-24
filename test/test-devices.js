@@ -1,6 +1,5 @@
 /* eslint-env mocha */
-// const db = require('../db')
-// require testing packages
+const db = require('../db')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const server = require('../index')
@@ -17,6 +16,10 @@ const device = {
 }
 
 describe('DEVICES', () => {
+
+  beforeEach(() => db.migrations.up())
+  afterEach(() => db.migrations.down())
+
   // test POST route
   describe('POST /devices', () => {
     it('it should POST a new device', (done) => {
@@ -49,10 +52,10 @@ describe('DEVICES', () => {
   })
 
   // test /devices/:id
-  describe('GET /devices/:id', () => {
-    it('it should GET a device by id', (done) => {
+  describe('GET /devices/:serial_num', () => {
+    it('it should GET a device by serial_num', (done) => {
       chai.request(server)
-        .get('/devices/' + device.serial_num)
+        .get('/devices/collar1')
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.be.a('object')
@@ -64,10 +67,10 @@ describe('DEVICES', () => {
   })
 
   // DELETE ROUTE
-  describe('DELETE /devices', () => {
-    it('it should DELETE the proper device', (done) => {
+  describe('DELETE /devices/:serial_num', () => {
+    it('it should DELETE device by serial number', (done) => {
       chai.request(server)
-        .delete('/devices/' + device.serial_num)
+        .delete('/devices/collar3')
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.be.a('object')

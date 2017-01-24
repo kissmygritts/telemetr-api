@@ -9,7 +9,8 @@ const repos = {
   deployments: require('./repos/deployments'),
   relocations: require('./repos/relocations'),
   devices: require('./repos/devices'),
-  trajectories: require('./repos/trajectories')
+  trajectories: require('./repos/trajectories'),
+  migrations: require('./repos/migrations')
 }
 
 // set pg-promise options

@@ -1,6 +1,5 @@
 /* eslint-env mocha */
 const db = require('../db')
-// require testing packages
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const server = require('../index')
@@ -8,7 +7,7 @@ const should = chai.should()
 chai.use(chaiHttp)
 
 const capture = {
-  perm_id: 'testCapture',
+  perm_id: 'test',
   cap_date: '2016-01-01',
   sex: 'male',
   age: 'adult',
@@ -16,23 +15,10 @@ const capture = {
   notes: 'test animal entry',
   serial_num: 'collar1'
 }
-const device = {
-  serial_num: 'collar1',
-  frequency: 123.123,
-  vendor: 'ATS - telonics',
-  device_type: 'GPS',
-  mfg_date: '2012-01-01',
-  model: 'IRIDIUM'
-}
 
 describe('CAPTURES', () => {
-  before(() => {
-    db.devices.post(device)
-  })
-
-  after(() => {
-    db.devices.delete({ serial_num: 'testDeviceCapture' })
-  })
+  beforeEach(() => db.migrations.up())
+  afterEach(() => db.migrations.down())
 
   describe('POST /captures', () => {
     it('it should POST a new capture', (done) => {
@@ -42,30 +28,6 @@ describe('CAPTURES', () => {
         .end((err, res) => {
           res.should.have.status(201)
           res.body.should.be.a('object')
-          res.body.should.have.property('success').eql(true)
-          res.body.should.have.property('data')
-          done()
-        })
-    })
-
-    /* it should also enter a new animal */
-    it('it should also insert a new animal', (done) => {
-      chai.request(server)
-        .get('/animals/' + capture.perm_id)
-        .end((err, res) => {
-          res.should.have.status(200)
-          res.body.should.have.property('success').eql(true)
-          res.body.should.have.property('data')
-          done()
-        })
-    })
-
-    // TODO: it should also insert into deployments
-    it('it should also insert a new deployment', (done) => {
-      chai.request(server)
-        .get('/deployments/' + capture.perm_id)
-        .end((err, res) => {
-          res.should.have.status(200)
           res.body.should.have.property('success').eql(true)
           res.body.should.have.property('data')
           done()
@@ -91,7 +53,7 @@ describe('CAPTURES', () => {
   describe('GET /captures/:perm_id', () => {
     it('it should GET capture by perm_id', (done) => {
       chai.request(server)
-        .get('/captures/' + capture.perm_id)
+        .get('/captures/testCapture')
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.be.a('object')
@@ -106,7 +68,7 @@ describe('CAPTURES', () => {
   describe('DELETE /captures/:perm_id', () => {
     it('it should DELETE capture by perm_id', (done) => {
       chai.request(server)
-        .delete('/captures/' + capture.perm_id)
+        .delete('/captures/testCapture')
         .end((err, res) => {
           res.should.have.status(200)
           res.should.be.a('object')
@@ -114,8 +76,5 @@ describe('CAPTURES', () => {
           done()
         })
     })
-
-    // TODO: DELETE should also delete Animal
-    // TODO: DELETE should also delete Deployment
   })
 })

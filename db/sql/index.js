@@ -46,5 +46,9 @@ module.exports = {
   },
   trajectories: {
     all: sql('trajectories/all.sql')
+  },
+  migrations: {
+    up: sql('migrations/up.sql'),
+    down: sql('migrations/down.sql')
   }
 }
