@@ -16,23 +16,22 @@ const capture = {
   notes: 'test animal entry',
   serial_num: 'collar1'
 }
+const device = {
+  serial_num: 'collar1',
+  frequency: 123.123,
+  vendor: 'ATS - telonics',
+  device_type: 'GPS',
+  mfg_date: '2012-01-01',
+  model: 'IRIDIUM'
+}
 
 describe('CAPTURES', () => {
   before(() => {
-    db.devices.post({
-      serial_num: 'collar1',
-      frequency: 123.123,
-      vendor: 'ATS - telonics',
-      device_type: 'GPS',
-      mfg_date: '2012-01-01',
-      model: 'IRIDIUM'
-    })
+    db.devices.post(device)
   })
 
   after(() => {
     db.devices.delete({ serial_num: 'testDeviceCapture' })
-    // TODO: delete animal
-    // TODO: delete deployment
   })
 
   describe('POST /captures', () => {
@@ -62,6 +61,16 @@ describe('CAPTURES', () => {
     })
 
     // TODO: it should also insert into deployments
+    it('it should also insert a new deployment', (done) => {
+      chai.request(server)
+        .get('/deployments/' + capture.perm_id)
+        .end((err, res) => {
+          res.should.have.status(200)
+          res.body.should.have.property('success').eql(true)
+          res.body.should.have.property('data')
+          done()
+        })
+    })
   })
 
   describe('GET /captures', () => {
@@ -86,7 +95,7 @@ describe('CAPTURES', () => {
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.be.a('object')
-          res.body.should.have.a.property('success').eql(true)
+          res.body.should.have.property('success').eql(true)
           res.body.should.have.property('data')
           done()
         })

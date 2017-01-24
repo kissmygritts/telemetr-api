@@ -31,12 +31,12 @@ describe('DEPLOYMENTS', () => {
     .then(db.captures.post(capture))
   })
 
-  // after(() => {
-  //   db.devices.delete({ serial_num: 'collar2' })
-  //   .then(db.captures.delete({ perm_id: 'testDeployments' }));
-  //   // TODO: delete animals
-  //   // TODO: delete deployment
-  // });
+  after(() => {
+    db.captures.delete({ perm_id: 'testDeployments' })
+    .then(db.devices.delete({ serial_num: 'collar2' }))
+    // TODO: delete animals
+    // TODO: delete deployment
+  })
 
   describe('GET /deployments', () => {
     it('it should GET all deployments', (done) => {
