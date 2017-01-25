@@ -2,6 +2,7 @@ const Express = require('express')
 const router = Express.Router()
 // const dbgeo = require('dbgeo')
 const db = require('../db')
+const pgp = db.$config.pgp
 
 router.get('/', (req, res) => {
   db.relocations.all()
@@ -15,23 +16,18 @@ router.get('/:perm_id', (req, res) => {
   .catch(err => res.status(400).json({ success: false, err: err }))
 })
 
+router.post('/', (req, res) => {
+  let data = pgp.helpers.insert(req.body,
+    ['serial_num', 'acq_time_lcl', 'longitude', 'latitude'],
+    'gps'
+  )
+  console.log(data)
+  db.none(data)
+  .then(() => res.status(201).json({ success: true }))
+  .catch(err => res.status(400).json({ success: false, err: err }))
+})
+
 // 2017-01-19 - old queries below, will convert to newer methods
-// // GET request: show all gps locations for one animal
-// router.get('/:perm_id', (req, res) => {
-//   db.any(`
-//     SELECT
-//       animals.perm_id,
-//       telemetry.*
-//     FROM animals, telemetry
-//     WHERE
-//       animals.id = telemetry.animal_id AND
-//       animals.perm_id = $(perm_id)
-//     ORDER BY telemetry.acq_time
-//     `, req.params
-//   )
-//   .then(data => res.status(200).json({ success: true, data: data }))
-//   .catch(err => res.status(400).json({ success: false, data: err }));
-// });
 //
 // // GET request: return geom as a geojson
 // router.get('/:perm_id/geojson', (req, res) => {

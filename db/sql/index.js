@@ -42,6 +42,7 @@ module.exports = {
   relocations: {
     all: sql('relocations/all.sql'),
     show: sql('relocations/show.sql'),
+    post: sql('relocations/post.sql'),
     validity: sql('relocations/validity.sql')
   },
   trajectories: {
