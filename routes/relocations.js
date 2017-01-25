@@ -17,12 +17,14 @@ router.get('/:perm_id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  let data = pgp.helpers.insert(req.body,
-    ['serial_num', 'acq_time_lcl', 'longitude', 'latitude'],
-    'gps'
-  )
-  console.log(data)
-  db.none(data)
+  // this isn't proper, but it works
+  let cs = new pgp.helpers.ColumnSet([
+    'serial_num', 'acq_time_lcl', 'longitude', 'latitude'
+  ], { table: 'gps' })
+  let up = pgp.helpers.insert(req.body, cs)
+
+  db.none(up)
+  // db.relocations.post(req.body)
   .then(() => res.status(201).json({ success: true }))
   .catch(err => res.status(400).json({ success: false, err: err }))
 })

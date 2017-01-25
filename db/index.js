@@ -28,7 +28,7 @@ const options = {
 
 // attach monitor to pgp instance
 if (env === 'development') {
-    monitor.attach(options)
+  monitor.attach(options)
 }
 
 // require and init pg-promise with options

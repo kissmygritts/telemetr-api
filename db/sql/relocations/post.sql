@@ -7,4 +7,12 @@ INSERT INTO gps (
   activity,
   temperature
 )
-VALUES $1
+VALUES (
+  ${serial_num},
+  ${acq_time_lcl},
+  ${latitude},
+  ${longitude},
+  ${altitude},
+  ${activity},
+  ${temperature}
+)

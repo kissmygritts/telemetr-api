@@ -5,7 +5,16 @@ module.exports = (rep, pgp) => {
   return {
     all: () => rep.many(sql.all),
     show: permId => rep.many(sql.show, permId),
-    post: data => rep.many(sql.post, data),
+    // POST isn't working in the repo
+    // post: data => {
+    //   let cs = new pgp.helpers.ColumnSet([
+    //     'serial_num', 'acq_time_lcl', 'longitude', 'latitude'
+    //   ],
+    //     { table: 'gps' }
+    //   )
+    //   let up = pgp.helpers.insert(data, cs)
+    //   rep.none(up)
+    // },
     validity: () => rep.many(sql.validity)
   }
 }
