@@ -11,4 +11,5 @@ SELECT
 FROM ((animals
   INNER JOIN captures ON animals.perm_id = captures.perm_id)
   INNER JOIN deployments ON animals.id = deployments.animal_id)
-  INNER JOIN devices ON deployments.device_id = devices.id;
+  INNER JOIN devices ON deployments.device_id = devices.id
+$1^

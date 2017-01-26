@@ -2,11 +2,26 @@ const Express = require('express')
 // const _ = require('lodash')
 const router = Express.Router()
 const db = require('../db')
+const pgp = db.$config.pgp
 
 router.get('/', (req, res) => {
   let q = req.query
+  let where
   console.log(q)
-  db.captures.all()
+
+  if (q.species) {
+    if (q.species.length > 1) {
+      // QUESTION: this isn't working, how can i un-array an array
+      where = pgp.as.format('WHERE captures.species IN ($(species))', q)
+    } else {
+      where = pgp.as.format('where captures.species = $(species)', q)
+    }
+  } else {
+    where = ';'
+  }
+
+  console.log(where)
+  db.captures.all(where)
   .then(data => res.status(200).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
