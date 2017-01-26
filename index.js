@@ -19,6 +19,7 @@ const captures = require('./routes/captures')
 const relocations = require('./routes/relocations')
 const validity = require('./routes/validity')
 const trajectories = require('./routes/trajectories')
+const sql = require('./routes/sql')
 
 app.use('/deployments', deployments)
 app.use('/animals', animals)
@@ -27,6 +28,7 @@ app.use('/captures', captures)
 app.use('/relocations', relocations)
 app.use('/validity', validity)
 app.use('/trajectories', trajectories)
+app.use('/sql', sql)
 
 app.get('/migrations/up', (req, res) => {
   db.migrations.up()
