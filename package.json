@@ -19,12 +19,14 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
     "dbgeo": "^1.0.0",
     "express": "^4.14.0",
     "lodash": "^4.17.4",
     "pg": "^6.1.2",
     "pg-monitor": "^0.6.1",
-    "pg-promise": "^5.5.0"
+    "pg-promise": "^5.5.0",
+    "vue-material": "^0.6.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",

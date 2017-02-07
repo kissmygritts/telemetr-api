@@ -1,12 +1,14 @@
 'use strict'
 const Express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 // const qs = require('qs')
 const app = Express()
 const db = require('./db')  // As long as the routes use the db logic
 // I don't need to require the database here
 
 // QUESTION: check body parser requirements for an API??
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -53,7 +55,7 @@ app.get('/migrations/down', (req, res) => {
 //   res.status(200).send(req.query)
 // })
 
-app.listen(8080, () => {
+app.listen(8081, () => {
   console.log('API listening on port 8080')
 })
 
