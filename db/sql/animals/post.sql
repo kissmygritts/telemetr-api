@@ -21,4 +21,5 @@ VALUES (
   ${mgmt_area},
   ${notes},
   ${attributes:json}
+RETURNING *
 )

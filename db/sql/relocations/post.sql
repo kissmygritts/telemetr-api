@@ -5,7 +5,13 @@ INSERT INTO gps (
   longitude,
   altitude,
   activity,
-  temperature
+  temperature,
+  hdop,
+  pdop,
+  n_sats,
+  fixtype,
+  gps_volts,
+  vhf_volts
 )
 VALUES (
   ${serial_num},
@@ -14,5 +20,12 @@ VALUES (
   ${longitude},
   ${altitude},
   ${activity},
-  ${temperature}
+  ${temperature},
+  ${temperature},
+  ${hdop},
+  ${pdop},
+  ${n_sats},
+  ${fixtype},
+  ${gps_volts},
+  ${vhf_volt}s
 )

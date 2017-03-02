@@ -1,2 +1,3 @@
 SELECT *
-FROM animals;
+FROM animals
+WHERE ($1^)

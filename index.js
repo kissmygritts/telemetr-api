@@ -56,7 +56,7 @@ app.get('/migrations/down', (req, res) => {
 // })
 
 app.listen(8081, () => {
-  console.log('API listening on port 8080')
+  console.log('API listening on port 8081')
 })
 
 module.exports = app

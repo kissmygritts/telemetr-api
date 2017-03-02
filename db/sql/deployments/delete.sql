@@ -1,3 +1,6 @@
+-- TODO: need to be careful with this query, if there are two entries for one animal they will both be deleted.
+-- TODO: this can be deleted
+
 DELETE
 FROM deployments
 WHERE id = (
