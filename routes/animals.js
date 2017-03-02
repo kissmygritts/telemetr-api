@@ -6,21 +6,18 @@ const pgp = db.$config.pgp
 router.get('/', (req, res) => {
   let q = req.query
   console.log(q)
-  let where
+  let where = ''
+  let s = []
 
-  if (q.species) {
-    where = pgp.as.format('species IN ($(species:csv))', q)
+  if (Object.keys(q).length !== 0) {
+    console.log(q[0])
+    for (let x in q) {
+      s.push(pgp.as.format(`${x} IN ($(${x}:csv))`, q))
+    }
+    where = s.reduce((prev, curr) => prev + ' AND ' + curr)
   } else {
-    where = 'true'
+    where = true
   }
-
-  if (q.study) {
-    where = pgp.as.format('study_id IN ($(study:csv))', q)
-  } else {
-    where = 'true'
-  }
-
-  console.log(where)
 
   db.animals.all(where)
   .then(data => res.status(200).json({ success: true, data: data }))
