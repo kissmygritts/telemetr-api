@@ -11,7 +11,8 @@ const repos = {
   relocations: require('./repos/relocations'),
   devices: require('./repos/devices'),
   trajectories: require('./repos/trajectories'),
-  migrations: require('./repos/migrations')
+  migrations: require('./repos/migrations'),
+  studies: require('./repos/studies')
 }
 
 // set pg-promise options

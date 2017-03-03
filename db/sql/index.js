@@ -52,5 +52,10 @@ module.exports = {
   migrations: {
     up: sql('migrations/up.sql'),
     down: sql('migrations/down.sql')
+  },
+  studies: {
+    all: sql('studies/all.sql'),
+    show: sql('studies/show.sql'),
+    relocs: sql('studies/relocs.sql')
   }
 }
