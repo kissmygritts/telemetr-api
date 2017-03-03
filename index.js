@@ -44,16 +44,16 @@ app.get('/migrations/down', (req, res) => {
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
 
-// app.get('/qs', (req, res) => {
-//   let qg = req.query
-//   if (qg !== {}) {
-//     console.log('no query string')
-//   } else {
-//     console.log(req.query)
-//   }
-//
-//   res.status(200).send(req.query)
-// })
+app.get('/qs', (req, res) => {
+  let qg = req.query
+  if (qg !== {}) {
+    console.log('no query string')
+  } else {
+    console.log(req.query)
+  }
+
+  res.status(200).json(req.query)
+})
 
 app.listen(8081, () => {
   console.log('API listening on port 8081')

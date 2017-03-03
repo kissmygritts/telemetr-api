@@ -46,4 +46,17 @@ router.delete('/:perm_id', (req, res) => {
 
 // TODO: edit route
 
+// get deployments by animal's perm_id
+router.get('/:perm_id/deployments', (req, res) => {
+  db.deployments.show(`WHERE perm_id = '${req.params.perm_id}'`)
+  .then(data => res.status(201).json({ success: true, data: data }))
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
+
+// get all relocations by animal's perm_id
+router.get('/:perm_id/relocations', (req, res) => {
+  db.relocations.show(req.params)
+  .then(data => res.status(201).json({ success: true, data: data }))
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
 module.exports = router

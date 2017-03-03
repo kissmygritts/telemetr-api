@@ -12,6 +12,6 @@ module.exports = (rep, pgp) => {
   */
   return {
     all: () => rep.many(sql.all),
-    show: permId => rep.any(sql.show, permId)
+    show: where => rep.any(sql.show, where)
   }
 }
