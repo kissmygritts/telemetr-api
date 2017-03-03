@@ -6,7 +6,6 @@ INSERT INTO animals (
   sex,
   age,
   study_id,
-  mgmt_area,
   notes,
   attributes
 )
@@ -18,7 +17,6 @@ VALUES (
   ${sex},
   ${age},
   ${study_id},
-  ${mgmt_area},
   ${notes},
   ${attributes:json}
 RETURNING *

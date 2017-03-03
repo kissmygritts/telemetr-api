@@ -3,12 +3,14 @@ const router = Express.Router()
 const db = require('../db')
 const pgp = db.$config.pgp
 
+// get all animals
 router.get('/', (req, res) => {
   let q = req.query
-  console.log(q)
   let where = ''
   let s = []
 
+  // loop over q (req.query) to grab querystring params to
+  // dynamically generate the sql where clause
   if (Object.keys(q).length !== 0) {
     console.log(q[0])
     for (let x in q) {
@@ -24,12 +26,14 @@ router.get('/', (req, res) => {
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
 
+// get animal by perm_id
 router.get('/:perm_id', (req, res) => {
   db.animals.show(req.params)
   .then(data => res.status(200).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
 
+// post to animals table
 router.post('/', (req, res) => {
   // TODO: data validation for aniamls post
   db.animals.post(req.body)
@@ -37,6 +41,7 @@ router.post('/', (req, res) => {
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
 
+// delete an animal by perm_id
 router.delete('/:perm_id', (req, res) => {
   // TODO: should also delete the deployment
   db.captures.delete(req.params)
@@ -59,4 +64,5 @@ router.get('/:perm_id/relocations', (req, res) => {
   .then(data => res.status(201).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
+
 module.exports = router
