@@ -59,5 +59,11 @@ module.exports = {
     show: sql('studies/show.sql'),
     deployments: sql('studies/deployments.sql'),
     relocs: sql('studies/relocs.sql')
+  },
+  species: {
+    all: sql('species/all.sql'),
+    show: sql('species/show.sql'),
+    deployments: sql('species/deployments.sql'),
+    relocs: sql('species/relocs.sql')
   }
 }

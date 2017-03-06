@@ -22,6 +22,7 @@ const relocations = require('./routes/relocations')
 const validity = require('./routes/validity')
 const trajectories = require('./routes/trajectories')
 const studies = require('./routes/studies')
+const species = require('./routes/species')
 const sql = require('./routes/sql')
 
 app.use('/deployments', deployments)
@@ -32,6 +33,7 @@ app.use('/relocations', relocations)
 app.use('/validity', validity)
 app.use('/trajectories', trajectories)
 app.use('/studies', studies)
+app.use('/species', species)
 app.use('/sql', sql)
 
 app.get('/migrations/up', (req, res) => {
