@@ -63,9 +63,11 @@ router.get('/:perm_id/deployments', (req, res) => {
 
 // get all relocations by animal's perm_id
 router.get('/:perm_id/relocations', (req, res) => {
-  db.relocations.show(req.params)
+  db.animals.relocs(req.params)
   .then(data => res.status(201).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
+
+// TODO: /animals/:perm_id/relocs/:from-:to
 
 module.exports = router

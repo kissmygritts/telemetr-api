@@ -1,3 +1,3 @@
 SELECT *
 FROM relocs_analysis
-WHERE relocs_id = ${id};
+WHERE perm_id = ${perm_id}

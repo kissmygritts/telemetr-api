@@ -4,7 +4,7 @@ const sql = require('../sql').relocations
 module.exports = (rep, pgp) => {
   return {
     all: () => rep.many(sql.all),
-    show: permId => rep.many(sql.show, permId),
+    show: id => rep.one(sql.show, id),
     // POST isn't working in the repo
     // post: data => {
     //   let cs = new pgp.helpers.ColumnSet([

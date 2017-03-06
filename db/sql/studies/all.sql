@@ -1,2 +1,2 @@
 SELECT *
-FROM lkp_study;
+FROM studies;

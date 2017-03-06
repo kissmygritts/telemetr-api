@@ -28,7 +28,8 @@ module.exports = {
   animals: {
     all: sql('animals/all.sql'),
     show: sql('animals/show.sql'),
-    post: sql('animals/post.sql')
+    post: sql('animals/post.sql'),
+    relocs: sql('animals/relocs.sql')
   },
   captures: {
     all: sql('captures/all.sql'),
@@ -56,6 +57,7 @@ module.exports = {
   studies: {
     all: sql('studies/all.sql'),
     show: sql('studies/show.sql'),
+    deployments: sql('studies/deployments.sql'),
     relocs: sql('studies/relocs.sql')
   }
 }
