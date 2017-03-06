@@ -58,7 +58,10 @@ module.exports = {
     all: sql('studies/all.sql'),
     show: sql('studies/show.sql'),
     deployments: sql('studies/deployments.sql'),
-    relocs: sql('studies/relocs.sql')
+    relocs: sql('studies/relocs.sql'),
+    post: sql('studies/post.sql'),
+    edit: sql('studies/edit.sql'),
+    delete: sql('studies/delete.sql')
   },
   species: {
     all: sql('species/all.sql'),
