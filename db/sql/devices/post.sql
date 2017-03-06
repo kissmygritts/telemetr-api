@@ -1,8 +1,8 @@
 INSERT INTO devices (
-  serial_num,
-  frequency,
+  serial_num, -- required
+  frequency, -- required
   vendor,
-  device_type,
+  device_type, -- required
   mfg_date,
   model
 )

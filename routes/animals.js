@@ -35,6 +35,7 @@ router.get('/:perm_id', (req, res) => {
 
 // post to animals table
 router.post('/', (req, res) => {
+  // FIXME: this needs to be by id rather than perm_id
   // TODO: data validation for aniamls post
   db.animals.post(req.body)
   .then(data => res.status(201).json({ success: true, data: data }))
@@ -43,6 +44,7 @@ router.post('/', (req, res) => {
 
 // delete an animal by perm_id
 router.delete('/:perm_id', (req, res) => {
+  // FIXME: this needs to be by id rather than perm_id
   // TODO: should also delete the deployment
   db.captures.delete(req.params)
   .then(() => res.status(200).json({ success: true }))
@@ -53,6 +55,7 @@ router.delete('/:perm_id', (req, res) => {
 
 // get deployments by animal's perm_id
 router.get('/:perm_id/deployments', (req, res) => {
+  // TODO: get active deployments
   db.deployments.show(`WHERE perm_id = '${req.params.perm_id}'`)
   .then(data => res.status(201).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }))

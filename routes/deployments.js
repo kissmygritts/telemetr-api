@@ -1,6 +1,7 @@
 const Express = require('express')
 const router = Express.Router()
 const db = require('../db')
+const pgp = db.$config.pgp
 
 router.get('/', (req, res) => {
   db.deployments.all()
@@ -8,8 +9,8 @@ router.get('/', (req, res) => {
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
 
-router.get('/:perm_id', (req, res) => {
-  db.deployments.show(req.params)
+router.get('/:id', (req, res) => {
+  db.deployments.show(`WHERE deployments_id = ${req.params.id}`)
   .then(data => res.status(200).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
