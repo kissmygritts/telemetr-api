@@ -22,7 +22,8 @@ module.exports = {
     all: sql('devices/all.sql'),
     show: sql('devices/show.sql'),
     post: sql('devices/post.sql'),
-    delete: sql('devices/delete.sql')
+    delete: sql('devices/delete.sql'),
+    edit: sql('devices/edit.sql')
     // TODO: /devices/:perm_id/deployments route?? get all the deployments for a device?
   },
   animals: {

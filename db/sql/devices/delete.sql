@@ -1,3 +1,4 @@
 DELETE
 FROM devices
-WHERE serial_num = ${serial_num};
+WHERE serial_num = ${serial_num}
+RETURNING *

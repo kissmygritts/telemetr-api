@@ -6,6 +6,7 @@ module.exports = (rep, pgp) => {
     all: () => rep.many(sql.all),
     show: serial => rep.one(sql.show, serial),
     post: body => rep.one(sql.post, body),
-    delete: serial => rep.none(sql.delete, serial)
+    delete: serial => rep.one(sql.delete, serial),
+    edit: arr => rep.one(sql.edit, arr)
   }
 }

@@ -1,6 +1,8 @@
 const Express = require('express')
+const _ = require('lodash')
 const router = Express.Router()
 const db = require('../db')
+const pgp = db.$config.pgp
 
 // get all devices
 router.get('/', (req, res) => {
@@ -28,6 +30,15 @@ router.delete('/:serial_num', (req, res) => {
   // TODO: when a device is deleted and the device has deployments this should throw a warning
   db.devices.delete(req.params)
   .then(() => res.status(200).json({ success: true }))
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
+
+// update an existing device by serial number
+router.put('/:serial_num', (req, res) => {
+  let s = pgp.helpers.sets(req.body)
+
+  db.devices.edit([s, req.params.serial_num])
+  .then(data => res.status(201).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
 
