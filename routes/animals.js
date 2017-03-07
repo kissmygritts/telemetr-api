@@ -43,15 +43,28 @@ router.post('/', (req, res) => {
 })
 
 // delete an animal by perm_id
-router.delete('/:perm_id', (req, res) => {
-  // FIXME: this needs to be by id rather than perm_id
-  // TODO: should also delete the deployment
-  db.captures.delete(req.params)
+router.delete('/:id', (req, res) => {
+  db.animals.delete(req.params)
   .then(() => res.status(200).json({ success: true }))
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
 
-// TODO: edit route
+router.put('/:id', (req, res) => {
+  db.animals.edit({
+    id: req.params.id,
+    perm_id: req.body.perm_id || null,
+    species_id: req.body.species_id || null,
+    sex: req.body.sex || null,
+    age: req.body.age || null,
+    study_id: req.body.study_id || null,
+    fate: req.body.fate || null,
+    fate_date: req.body.fate_date || null,
+    notes: req.body.notes || null,
+    attributes: req.body.attributes || null
+  })
+  .then(data => res.status(201).json({ success: true, data: data }))
+  .catch(err => res.status(400).json({ success: false, error: err }))
+})
 
 // get deployments by animal's perm_id
 router.get('/:perm_id/deployments', (req, res) => {

@@ -29,6 +29,8 @@ module.exports = {
     all: sql('animals/all.sql'),
     show: sql('animals/show.sql'),
     post: sql('animals/post.sql'),
+    delete: sql('animals/delete.sql'),
+    edit: sql('animals/edit.sql'),
     relocs: sql('animals/relocs.sql')
   },
   captures: {
