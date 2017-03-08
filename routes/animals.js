@@ -68,16 +68,25 @@ router.put('/:id', (req, res) => {
 
 // get deployments by animal's perm_id
 router.get('/:perm_id/deployments', (req, res) => {
-  // TODO: get active deployments
-  db.deployments.show(`WHERE perm_id = '${req.params.perm_id}'`)
-  .then(data => res.status(201).json({ success: true, data: data }))
+  let where = ''
+
+  // check for active in query string
+  if (Object.keys(req.query).length !== 0 && req.query.active === '') {
+    // FIXME: use pgp.helpers.format instead of ES6 template strings
+    where = `WHERE perm_id = '${req.params.perm_id}' AND outservice IS NULL`
+  } else {
+    where = `WHERE perm_id = '${req.params.perm_id}'`
+  }
+
+  db.deployments.show(where)
+  .then(data => res.status(200).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
 
 // get all relocations by animal's perm_id
 router.get('/:perm_id/relocations', (req, res) => {
   db.animals.relocs(req.params)
-  .then(data => res.status(201).json({ success: true, data: data }))
+  .then(data => res.status(200).json({ success: true, data: data }))
   .catch(err => res.status(400).json({ success: false, error: err }))
 })
 

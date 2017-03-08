@@ -6,7 +6,6 @@ const env = process.env.NODE_ENV
 const config = require('../config/database.json')[env]
 const repos = {
   animals: require('./repos/animals'),
-  captures: require('./repos/captures'),
   deployments: require('./repos/deployments'),
   relocations: require('./repos/relocations'),
   devices: require('./repos/devices'),
