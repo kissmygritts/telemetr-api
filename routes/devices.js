@@ -48,6 +48,7 @@ router.get('/:serial_num/deployments', (req, res) => {
 
   // check for active in query string
   if (Object.keys(req.query).length !== 0 && req.query.active === '') {
+    // FIXME: use pgp.helpers.format instead of ES6 template strings
     where = `WHERE serial_num = '${req.params.serial_num}' AND outservice IS NULL`
   } else {
     where = `WHERE serial_num = '${req.params.serial_num}'`

@@ -17,9 +17,18 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  // this isn't proper, but it works
   let cs = new pgp.helpers.ColumnSet([
-    'serial_num', 'acq_time_lcl', 'longitude', 'latitude'
+    'serial_num',
+    'acq_time_lcl',
+    'longitude',
+    'latitude',
+    'activity',
+    'temperature',
+    'hdop',
+    'pdop',
+    'n_sats',
+    'fixtype',
+    'gps_volts'
   ], { table: 'gps' })
   let up = pgp.helpers.insert(req.body, cs)
 
